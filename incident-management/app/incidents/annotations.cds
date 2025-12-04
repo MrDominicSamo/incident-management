@@ -148,6 +148,7 @@ annotate service.Incidents with @(
             {
                 $Type : 'UI.DataField',
                 Value : title,
+                Label : 'Title',
             },
             {
                 $Type : 'UI.DataField',
@@ -171,26 +172,7 @@ annotate service.Incidents with {
         Common.Label : '{i18n>Urgency}',
         Common.ValueListWithFixedValues : true,
         Common.Text : urgency.descr,
-        Common.ValueList : {
-            $Type : 'Common.ValueListType',
-            CollectionPath : 'Customers',
-            Parameters : [
-                {
-                    $Type : 'Common.ValueListParameterInOut',
-                    LocalDataProperty : urgency_code,
-                    ValueListProperty : 'ID',
-                },
-                {
-                    $Type : 'Common.ValueListParameterDisplayOnly',
-                    ValueListProperty : 'name',
-                },
-                {
-                    $Type : 'Common.ValueListParameterDisplayOnly',
-                    ValueListProperty : 'email',
-                },
-            ],
-        },
-    )
+        )
 };
 
 annotate service.Status with {
@@ -198,7 +180,7 @@ annotate service.Status with {
 };
 
 annotate service.Incidents with {
-    title @(
+    customer @(
         Common.Text : customer.name,
         Common.Text.@UI.TextArrangement : #TextOnly,
         Common.ValueList : {
@@ -207,7 +189,7 @@ annotate service.Incidents with {
             Parameters : [
                 {
                     $Type : 'Common.ValueListParameterInOut',
-                    LocalDataProperty : title,
+                    LocalDataProperty : customer_ID,
                     ValueListProperty : 'ID',
                 },
                 {
@@ -220,14 +202,7 @@ annotate service.Incidents with {
                 },
             ],
         },
-        Common.ValueListWithFixedValues : false,
-    )
-};
-
-annotate service.Incidents with {
-    customer @(
-        Common.Text : customer.name,
-        Common.Text.@UI.TextArrangement : #TextOnly,
+        Common.ValueListWithFixedValues : true,
     )
 };
 
@@ -254,4 +229,10 @@ annotate service.Incidents.conversation with @(
         },
     ]
 );
+
+annotate service.Customers with {
+    ID @(
+        Common.Text : name,
+        Common.Text.@UI.TextArrangement : #TextOnly,
+)};
 
