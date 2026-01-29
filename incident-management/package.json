@@ -7,11 +7,34 @@
     "express": "^4"
   },
   "devDependencies": {
+    "@cap-js/cds-test": "^0.4.1",
     "@cap-js/sqlite": "^2"
   },
   "scripts": {
+    "test": "npx jest tests/test.js",
     "start": "cds-serve",
     "watch-incidents": "cds watch --open incidents/webapp/index.html?sap-ui-xx-viewCache=false"
+  },
+  "cds": {
+    "requires": {
+      "[development]": {
+        "auth": {
+          "kind": "mocked",
+          "users": {
+            "alice": {
+              "roles": [
+                "support"
+              ]
+            },
+            "bob": {
+              "roles": [
+                "support"
+              ]
+            }
+          }
+        }
+      }
+    }
   },
   "private": true,
   "sapux": [
