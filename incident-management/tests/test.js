@@ -86,7 +86,7 @@ describe('Draft Choreography APIs', () => {
       expect(status).to.eql(200)
       expect(status_code).to.eql('C')
     })
-    describe('should fail to re-open closed incident', () => {
+    describe('Should fail to re-open closed incident', () => {
       it(`Should Open Closed Incident-${draftId}`, async () => {
         const { status } = await POST(
           `/odata/v4/processor/Incidents(ID=${incidentId},IsActiveEntity=true)/ProcessorService.draftEdit`,
